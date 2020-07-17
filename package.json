@@ -1,0 +1,31 @@
+{
+  "name": "faucet-pipeline-essugar",
+  "version": "0.0.0",
+  "description": "JavaScript + TypeScript asset pipeline based on sucrase",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larsrh/faucet-pipeline-essugar.git"
+  },
+  "author": "Lars Hupel <lars.hupel@innoq.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/larsrh/faucet-pipeline-essugar/issues"
+  },
+  "homepage": "https://github.com/larsrh/faucet-pipeline-essugar#readme",
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-sucrase": "^3.1.0",
+    "beatdown": "^1.0.1",
+    "faucet-pipeline-core": "^1.5.0",
+    "rollup": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.43",
+    "typescript": "^3.9.7"
+  }
+}
