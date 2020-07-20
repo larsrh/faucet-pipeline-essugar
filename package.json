@@ -4,7 +4,8 @@
   "description": "JavaScript + TypeScript asset pipeline based on sucrase",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:cli",
+    "test:cli": "./test/cli/run",
     "test:unit": "mocha test/unit/test_*.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.43",
+    "json-diff": "^0.5.4",
     "mocha": "^8.0.1",
     "typescript": "^3.9.7"
   }

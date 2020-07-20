@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+root=`dirname "$0"`
+root=`node -r fs -p "fs.realpathSync(process.argv[1]);" "$root"`
+
+. "$root/../../node_modules/faucet-pipeline-core/test/cli_harness.sh"
+
+begin "$root/test_basic"
+	faucet
+	assert_identical "./dist/bundle.js" "./expected.js"
+end
+
+begin "$root/test_basic" # once more with fingerprinting
+	faucet --fingerprint
+	assert_identical "./dist/bundle-3930f63318329292cd52218fdbd7a70d.js" "./expected.js"
+end
+
+# TODO
+
+begin "$root/test_sourcemap"
+	echo "PENDING: sourcemap support in beatdown"
+	faucet --sourcemaps
+#	assert_identical_sourcemap "./dist/bundle.js" "./expected.js" "./expected.js.map"
+end
+
+begin "$root/test_jsx"
+	faucet
+	assert_identical "./dist/bundle.js" "./expected.js"
+end
+
+begin "$root/test_typescript"
+	faucet
+	assert_identical "./dist/bundle.js" "./expected.js"
+end
+
+begin "$root/test_multi"
+	faucet
+	assert_identical "./dist/foo.js" "./expected_foo.js"
+	assert_identical "./dist/bar.js" "./expected_bar.js"
+	assert_json "./dist/manifest.json" "./expected.json"
+end
+
+begin "$root/test_manifest"
+	faucet --fingerprint
+	assert_identical "./dist/manifest.json" "./expected.json"
+end
+
+begin "$root/test_manifest_uris"
+	faucet --fingerprint
+	assert_json "./dist/manifest.json" "./expected.json"
+end
+
+begin "$root/test_fingerprinting"
+	faucet --fingerprint
+	assert_identical "./dist/bundle-3930f63318329292cd52218fdbd7a70d.js" "./expected.js"
+	assert_identical "./dist/bundle_alt.js" "./expected.js"
+end
+
+begin "$root/test_bundle_customization"
+	faucet
+	assert_identical "./dist/bundle.js" "./expected.js"
+	assert_identical "./dist/bundle_cjs.js" "./expected_cjs.js"
+end
+
+begin "$root/test_custom_config"
+	faucet -c assets.js
+	assert_identical "./dist/bundle.js" "./expected.js"
+end
+
+begin "$root/test_compact"
+	faucet --compact
+	assert_identical "./dist/bundle.js" "./expected_compacted.js"
+
+	faucet
+	assert_identical "./dist/bundle.js" "./expected_uncompacted.js"
+end
+
+begin "$root/test_minify"
+	faucet --compact
+	assert_identical "./dist/bundle.js" "./expected_compacted.js"
+
+	faucet
+	assert_identical "./dist/bundle.js" "./expected_uncompacted.js"
+end
+
+begin "$root/test_mangle"
+	faucet --compact
+	assert_identical "./dist/bundle.js" "./expected_compacted.js"
+
+	faucet
+	assert_identical "./dist/bundle.js" "./expected_uncompacted.js"
+end
+
+echo; echo "SUCCESS: all tests passed"
