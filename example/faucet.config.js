@@ -11,5 +11,7 @@ module.exports = {
         }
     }],
 
+    watchDirs: ["./src"],
+
     plugins: [require("../lib")]
 }
