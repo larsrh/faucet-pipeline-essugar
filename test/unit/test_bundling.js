@@ -197,7 +197,7 @@ console.log(\`[…] $\{txt}\`);
 					filepath: path.resolve(FIXTURES_DIR, "./dist/bundle.js"),
 					content: makeBundle(`
 let txt = \`foo\n\nbar\`;
-console.log(\`[…] $\{txt\}\`);
+console.log(\`[…] $\{txt}\`);
 					`.trim(), { compact: true })
 				}]);
 

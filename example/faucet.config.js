@@ -1,17 +1,17 @@
 module.exports = {
-    essugar: [{
-        source: "./src/index.js",
-        target: "./dist/bundle.js",
-        format: "iife",
-        jsx: true,
-        typescript: true,
-        externals: {
-            "react": "React",
-            "react-dom": "ReactDOM"
-        }
-    }],
+	essugar: [{
+		source: "./src/index.js",
+		target: "./dist/bundle.js",
+		format: "iife",
+		jsx: true,
+		typescript: true,
+		externals: {
+			react: "React",
+			"react-dom": "ReactDOM"
+		}
+	}],
 
-    watchDirs: ["./src"],
+	watchDirs: ["./src"],
 
-    plugins: [require("../lib")]
-}
+	plugins: [require("../lib")]
+};
