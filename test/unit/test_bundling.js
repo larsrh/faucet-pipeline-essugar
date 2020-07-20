@@ -170,8 +170,7 @@ console.log(\`[…] $\{MYLIB}\`); // eslint-disable-line no-console
 			});
 	});
 
-	it("should optionally compact bundle", function () {
-	    this.skip();
+	it("should optionally compact bundle", () => {
 		let config = [{
 			source: "./src/multiline.js",
 			target: "./dist/bundle.js"
@@ -190,7 +189,6 @@ console.log(\`[…] $\{txt}\`);
 					`.trim(), { compact: true })
 				}]);
 
-				config[0].esnext = true;
 				assetManager = new MockAssetManager(FIXTURES_DIR);
 				return faucetJS(config, assetManager, options)();
 			}).
@@ -198,8 +196,8 @@ console.log(\`[…] $\{txt}\`);
 				assetManager.assertWrites([{
 					filepath: path.resolve(FIXTURES_DIR, "./dist/bundle.js"),
 					content: makeBundle(`
-var txt = "foo\\n\\nbar";
-console.log("[\\u2026] ".concat(txt));
+let txt = \`foo\n\nbar\`;
+console.log(\`[…] $\{txt\}\`);
 					`.trim(), { compact: true })
 				}]);
 
@@ -210,9 +208,11 @@ console.log("[\\u2026] ".concat(txt));
 			then(_ => {
 				assetManager.assertWrites([{
 					filepath: path.resolve(FIXTURES_DIR, "./dist/bundle.js"),
-					content: makeBundle(`
-var txt = "foo\\n\\nbar";
-console.log("[\\u2026] ".concat(txt)); // eslint-disable-line no-console
+					content: makeBundle(`let txt = \`foo
+
+bar\`;
+
+console.log(\`[…] $\{txt}\`); // eslint-disable-line no-console
 					`.trim())
 				}]);
 			});
