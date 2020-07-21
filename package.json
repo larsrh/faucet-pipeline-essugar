@@ -1,6 +1,6 @@
 {
   "name": "faucet-pipeline-essugar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript + TypeScript asset pipeline based on sucrase",
   "main": "lib/index.js",
   "scripts": {
@@ -37,5 +37,7 @@
     "npm-run-all": "^4.1.5",
     "typescript": "^3.9.7"
   },
-  "files": ["lib/"]
+  "files": [
+    "lib/"
+  ]
 }
