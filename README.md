@@ -1,6 +1,7 @@
 # faucet-pipeline-essugar
 
 ![Node.js CI](https://github.com/larsrh/faucet-pipeline-essugar/workflows/Node.js%20CI/badge.svg)
+[![npm version](https://badge.fury.io/js/faucet-pipeline-essugar.svg)](https://badge.fury.io/js/faucet-pipeline-essugar)
 ![Experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 
 JavaScript + TypeScript asset pipeline based on sucrase
