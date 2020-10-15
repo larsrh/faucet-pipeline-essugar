@@ -220,6 +220,51 @@ console.log(\`[…] $\{txt}\`); // eslint-disable-line no-console
 			});
 	});
 
+	it("should replace NODE_ENV", () => {
+		let config = [{
+			source: "./src/processenv.js",
+			target: "./dist/bundle.js"
+		}];
+		let assetManager = new MockAssetManager(FIXTURES_DIR);
+
+		return faucetJS(config, assetManager, {})().
+			then(_ => {
+				assetManager.assertWrites([{
+					filepath: path.resolve(FIXTURES_DIR, "./dist/bundle.js"),
+					content: makeBundle(`/* eslint-disable */
+let env1 = "development";
+let env2 = true;
+
+console.log(env1);
+console.log(env2);
+					`.trim())
+				}]);
+			});
+	});
+
+	it("should replace NODE_ENV (production)", () => {
+		let config = [{
+			source: "./src/processenv.js",
+			target: "./dist/bundle.js",
+			env: "production"
+		}];
+		let assetManager = new MockAssetManager(FIXTURES_DIR);
+
+		return faucetJS(config, assetManager, {})().
+			then(_ => {
+				assetManager.assertWrites([{
+					filepath: path.resolve(FIXTURES_DIR, "./dist/bundle.js"),
+					content: makeBundle(`/* eslint-disable */
+let env1 = "production";
+let env2 = false;
+
+console.log(env1);
+console.log(env2);
+					`.trim())
+				}]);
+			});
+	});
+
 	it("should balk at non-relative paths for target", () => {
 		let assetManager = new MockAssetManager(FIXTURES_DIR);
 		let entryPoint = "src/index.js";
