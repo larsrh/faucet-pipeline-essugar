@@ -160,9 +160,11 @@ console.log(\`[…] $\{MYLIB}\`); // eslint-disable-line no-console
 (function (MYLIB) {
 'use strict';
 
-MYLIB = MYLIB && Object.prototype.hasOwnProperty.call(MYLIB, 'default') ? MYLIB['default'] : MYLIB;
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-console.log(\`[…] $\{MYLIB}\`); // eslint-disable-line no-console
+var MYLIB__default = /*#__PURE__*/_interopDefaultLegacy(MYLIB);
+
+console.log(\`[…] \${MYLIB__default['default']}\`); // eslint-disable-line no-console
 
 }(MYLIB));
 					`.trim() + "\n"
