@@ -21,7 +21,7 @@
   "homepage": "https://github.com/larsrh/faucet-pipeline-essugar#readme",
   "dependencies": {
     "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@rollup/plugin-sucrase": "^3.1.0",
     "beatdown": "^1.0.1",
