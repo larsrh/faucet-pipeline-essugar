@@ -12,5 +12,6 @@ let el = createElement(MyComponent, { type: "dummy",}
 )
 )
 );
+console.log(el);
 
 }());

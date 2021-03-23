@@ -9,3 +9,4 @@ let el = <MyComponent type="dummy">
 		</>
 	</my-element>
 </MyComponent>
+console.log(el);
