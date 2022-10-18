@@ -4,4 +4,4 @@
 function help() {
 	info();
 }
-help();}());
+help();})();
