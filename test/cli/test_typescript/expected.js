@@ -28,4 +28,4 @@ generateArticle({
 	authors: ["foo", "bar"]
 });
 
-}());
+})();
